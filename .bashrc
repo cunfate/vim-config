@@ -117,3 +117,4 @@ if ! shopt -oq posix; then
 fi
 
 export PATH=$PATH:/usr/local/nginx/sbin
+alias lks="ls"
