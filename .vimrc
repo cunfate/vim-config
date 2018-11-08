@@ -29,13 +29,13 @@ let g:autopep8_max_line_length=128
 let g:autopep8_disable_show_diff=1
 
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_always_populate_loc_list = 1
 " let g:syntastic_auto_loc_list = 1
 " let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+"let g:syntastic_check_on_wq = 0
 
 
 " autocmd BufWritePost *.py call Flake8()
@@ -70,7 +70,7 @@ let NERDTreeWinPos="right"
 let NERDTreeShowBookmarks=1
 " autocmd VimEnter * NERDTree
 nnoremap <silent> <F2> :NERDTreeTabsToggle<CR>
-nmap <F3> :TagbarToggle<CR>
+nmap <F3> :LeaderfFunction!<CR>
 nmap <F4> :Toc<CR>
 nmap <F7> :GoTests<CR>
 
@@ -96,7 +96,7 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'fatih/vim-go'
 Plugin 'tell-k/vim-autopep8'
 Plugin 'hynek/vim-python-pep8-indent'
-Plugin 'scrooloose/syntastic'
+"Plugin 'scrooloose/syntastic'
 " Plugin 'artur-shaik/vim-javacomplete2'
 Plugin 'tpope/vim-rails'
 Plugin 'ervandew/supertab'
@@ -119,6 +119,9 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'lyuts/vim-rtags'
 Plugin 'ludovicchabant/vim-gutentags'
+Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'w0rp/ale'
+Plugin 'Yggdroot/LeaderF'
 
 
 Plugin 'moll/vim-node'
@@ -202,10 +205,10 @@ let g:go_fmt_command = "goimports"
 "let g:syntastic_go_checkers=['go']
 "let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
 "let g:go_metalinter_enabled = ['vet', 'golint']
-let g:go_metalinter_autosave = 1
+"let g:go_metalinter_autosave = 1
 "let g:syntastic_go_checkers=['gometalinter']
-let g:syntastic_go_checkers=['go']
-let g:syntastic_javascript_checkers = ['jslint']
+"let g:syntastic_go_checkers=['go']
+"let g:syntastic_javascript_checkers = ['jslint']
 "let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 
 
@@ -311,3 +314,44 @@ autocmd BufNewFile *ops.md 0r ~/.vim/templates/ops.md
 autocmd BufNewFile *design.md 0r ~/.vim/templates/design.md
 let g:vim_markdown_frontmatter = 1
 nnoremap gjd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" gutentags configure
+"
+set tags=./.tags;,.tags
+
+let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
+
+let g:gutentags_ctags_tagfile = '.tags'
+let s:vim_tags=expand('~/.cache/tags')
+let g:gutentags_cache_dir=s:vim_tags
+
+let g:gutentags_ctags_extra_args=['--fields=+niazS', '--extras=+q']
+let g:gutentags_ctags_extra_args+=['--c++-kinds=+px']
+let g:gutentags_ctags_extra_args+=['--c-kinds=+px']
+
+if !isdirectory(s:vim_tags)
+    silent! call mkdir (s:vim_tags, 'p')
+endif
+
+" cpp highlight configure
+
+let g:cpp_class_scope_highlight =1
+let g:cpp_member_variable_hightlight=1
+let g:cpp_class_decl_hightlight = 1
+let g:cpp_concepts_highlight = 1
+
+"ale config
+
+let g:ale_linters_explicit = 1
+let g:ale_completion_delay = 500
+let g:ale_echo_delay = 20
+let g:ale_lint_delay = 500
+let g:ale_echo_msg_format= '[%linter%] %code: %%s'
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
+let g:airline#extensions#ale#enabled=1
+
+let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
+let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
+let g:ale_c_cppcheck_options = ''
+let g:ale_cpp_cppcheck_options = ''
