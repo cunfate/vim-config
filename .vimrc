@@ -122,6 +122,8 @@ Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'w0rp/ale'
 Plugin 'Yggdroot/LeaderF'
+Plugin 'mileszs/ack.vim'
+Plugin 'lifepillar/vim-solarized8'
 
 
 Plugin 'moll/vim-node'
@@ -223,7 +225,7 @@ let g:tagbar_sort = 0
 let g:NERDTrimTrailingWhitespace = 1
 
 
-" ################### 自动补全 ###################
+" ycm configs 
 
 let g:ycm_min_num_of_chars_for_completion = 3 
 let g:ycm_autoclose_preview_window_after_completion=1
@@ -236,7 +238,6 @@ set completeopt-=preview
 "let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf=0
 "
-" 比较喜欢用tab来选择补全...
 function! MyTabFunction ()
     let line = getline('.')
     let substr = strpart(line, -1, col('.')+1)
@@ -249,7 +250,6 @@ endfunction
 inoremap <tab> <c-r>=MyTabFunction()<cr>
 let g:gotests_bin = '/root/go/bin/gotests'
 
-" ################### 代码片段 ###################
 " ultisnips settings
 
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -355,3 +355,12 @@ let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
 let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
 let g:ale_c_cppcheck_options = ''
 let g:ale_cpp_cppcheck_options = ''
+
+" ag config
+"
+let g:ackprg= 'ag --nogroup --nocolor --column'
+map <c-u> :Ack<space>
+
+" solarized config
+set background=dark
+colorscheme solarized8

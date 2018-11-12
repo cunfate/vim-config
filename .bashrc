@@ -118,3 +118,4 @@ fi
 
 export PATH=$PATH:/usr/local/nginx/sbin
 alias lks="ls"
+alias kls='ls -al'
