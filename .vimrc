@@ -359,7 +359,7 @@ let g:ale_cpp_cppcheck_options = ''
 " ag config
 "
 let g:ackprg= 'ag --nogroup --nocolor --column'
-map <c-u> :Ack<space>
+map <c-n> viwy<ESC>:Ack<space><c-s-R>"<CR>
 
 " solarized config
 set background=dark
